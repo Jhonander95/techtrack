@@ -1,27 +1,65 @@
-# Techtrack
+Gracias por la aclaración, aquí está la versión actualizada con un propósito más alineado a tu proyecto:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+---
 
-## Development server
+# 🚀 **Techtrack**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Techtrack es una aplicación desarrollada con **Angular 18** diseñada para llevar un **seguimiento eficiente de los técnicos** en una empresa. Su objetivo es optimizar la gestión y organización del trabajo, especialmente en sistemas que actualmente son ineficientes para esta tarea.  
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📋 **Requisitos**
 
-## Build
+Asegúrate de tener instalados los siguientes elementos en tu máquina:  
+- **Node.js** (versión 18 o superior)  
+- **Angular CLI**  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Instala Angular CLI globalmente si aún no lo tienes:  
+```bash
+npm install -g @angular/cli
+```
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🛠️ **Instalación**
 
-## Running end-to-end tests
+1. Clona este repositorio:  
+   ```bash
+   git clone https://github.com/tu-usuario/techtrack.git
+   cd techtrack
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Instala las dependencias del proyecto:  
+   ```bash
+   npm install
+   ```
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🚀 **Ejecución del Proyecto**
+
+Para ejecutar el servidor de desarrollo, usa el siguiente comando:  
+```bash
+ng serve
+```
+
+Luego abre tu navegador en: [http://localhost:4200/](http://localhost:4200/).  
+
+---
+
+## 🏗️ **Construcción para Producción**
+
+Si deseas generar una versión lista para producción:  
+```bash
+ng build
+```
+
+Los archivos de salida estarán en la carpeta `dist/`.
+
+---
+
+## ✅ **Propósito del Proyecto**
+
+Techtrack permite a las empresas **gestionar y hacer seguimiento eficiente del trabajo de los técnicos**. Proporciona una solución práctica y organizada para mejorar la productividad en entornos donde el sistema actual de seguimiento es ineficiente.
+
+---
