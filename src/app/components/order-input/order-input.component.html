@@ -1,0 +1,32 @@
+<div class="card p-4">
+    <div class="p-fluid grid">
+      <!-- El grid de PrimeNG nos ayuda con el responsive -->
+      <div class="col-12">
+        <div class="field">
+          <label for="orderInput" class="block text-lg font-medium mb-2">Ingresar Orden</label>
+          <textarea 
+            id="orderInput"
+            [(ngModel)]="orderInput"
+            rows="8" 
+            pInputTextarea
+            [autoResize]="true"
+            class="w-full"
+            placeholder="Ingresa los detalles de la orden aquí..."
+          ></textarea>
+        </div>
+      </div>
+      
+      <div class="col-12 md:col-4 md:col-offset-4">
+        <!-- El botón se centrará en pantallas medianas y grandes -->
+        <button 
+          pButton 
+          label="Procesar Orden"
+          (click)="processOrder()"
+          class="p-button-raised p-button-primary w-full"
+          icon="pi pi-check"
+          iconPos="right"
+        ></button>
+      </div>
+    </div>
+  </div>
+  
