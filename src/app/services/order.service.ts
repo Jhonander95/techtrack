@@ -13,9 +13,15 @@ import { map } from 'rxjs/operators';
 export class OrderService {
   constructor(private firestore: Firestore) {}
 
-  // Método para guardar un objeto JSON en Firestore
+  // Método para guardar un objeto JSON en Firestore con la fecha actual
   saveData(data: any): Observable<string> {
+    // Agregar un campo de fecha al objeto de datos
+    const dataWithDate = {
+      ...data,
+      createdAt: new Date() // Agrega la fecha actual
+    };
+
     const collectionRef = collection(this.firestore, 'orders'); 
-    return from(addDoc(collectionRef, data)).pipe(map(docRef => docRef.id));
+    return from(addDoc(collectionRef, dataWithDate)).pipe(map(docRef => docRef.id));
   }
 }
