@@ -8,6 +8,9 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { OrderService } from '../../services/order.service';
 
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-order-input',
   standalone: true,
@@ -15,10 +18,12 @@ import { OrderService } from '../../services/order.service';
     FormsModule,
     InputTextarea,
     ButtonModule,
-    CardModule
+    CardModule,
+    ToastModule,
   ],
   templateUrl: './order-input.component.html',
-  styleUrl: './order-input.component.css'
+  styleUrl: './order-input.component.css',
+  providers: [MessageService]
 })
 export class OrderInputComponent {
 
@@ -27,7 +32,8 @@ export class OrderInputComponent {
   constructor(
     private dataService: DataService, 
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private messageService: MessageService
   ) {}
 
   processOrder(): void {
@@ -36,7 +42,8 @@ export class OrderInputComponent {
     console.log(data);
     this.orderService.saveData(data).subscribe(res => {
       console.log(res);
-      
+      this.messageService.add({severity: 'success', summary: 'Éxito', detail: 'Orden ingresada correctamente' });
+      this.orderInput = '';
     })
   }
 

@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="card p-4">
     <div class="p-fluid grid">
       <!-- El grid de PrimeNG nos ayuda con el responsive -->
@@ -20,6 +21,7 @@
         <!-- El botón se centrará en pantallas medianas y grandes -->
         <button 
           pButton 
+          [disabled]="orderInput.trim() === ''"
           label="Procesar Orden"
           (click)="processOrder()"
           class="p-button-raised p-button-primary w-full"
