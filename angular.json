@@ -29,9 +29,13 @@
             "styles": [
               "src/styles.css",
               "node_modules/primeflex/primeflex.css",
-              "node_modules/primeicons/primeicons.css"
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/jqwidgets-ng/jqwidgets/styles/jqx.base.css"
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/jqwidgets-scripts/jqwidgets/jqxcore.js",
+                "node_modules/jqwidgets-scripts/jqwidgets/jqxchart.js"
+            ]
           },
           "configurations": {
             "production": {
