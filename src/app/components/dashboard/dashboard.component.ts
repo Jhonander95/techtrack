@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { jqxChartModule } from 'jqwidgets-ng/jqxchart'
+import { ReportsService } from '../../services/reports.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,9 +17,15 @@ export class DashboardComponent implements OnInit {
    valueAxis: any;
    seriesGroups!: any[];
 
-   constructor() {}
+   constructor(private reportsServices: ReportsService) {}
 
   ngOnInit(): void {
+
+    this.reportsServices.getCurrentWeekData().subscribe(res => {
+      console.log(res);
+      this.data = this.transformData(res);
+    })
+
     // Datos de ejemplo
     this.data = [
       { day: 'Lunes', orders: 5 },
@@ -26,6 +33,7 @@ export class DashboardComponent implements OnInit {
       { day: 'Miércoles', orders: 8 },
       { day: 'Jueves', orders: 12 },
       { day: 'Viernes', orders: 7 },
+      { day: 'Sábado', orders: 4 }
     ];
 
      // Configuración de los ejes
@@ -35,9 +43,9 @@ export class DashboardComponent implements OnInit {
     };
 
     this.valueAxis = {
-      unitInterval: 2,
+      unitInterval: 1,
       minValue: 0,
-      maxValue: 15,
+      maxValue: 10,
       displayValueAxis: true,
       description: 'Órdenes procesadas',
     };
@@ -48,7 +56,7 @@ export class DashboardComponent implements OnInit {
         type: 'column',
         series: [
           {
-            dataField: 'orders',
+            dataField: 'orderCount',
             displayText: 'Órdenes',
           },
         ],
@@ -56,5 +64,26 @@ export class DashboardComponent implements OnInit {
     ];
 
   }  
+
+  // Método para transformar los datos recibidos
+  private transformData(data: any[]): any[] {
+    const result: { day: string; orderCount: number }[] = [];
+
+    // Contar las órdenes por día
+    data.forEach(item => {
+      const createdAt = item.createdAt.toDate(); // Convertir _Timestamp a Date
+      const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const day = createdAt.toLocaleDateString('es-ES', options); // Obtener la fecha en formato de cadena con día de la semana
+
+      const existing = result.find(r => r.day === day);
+      if (existing) {
+        existing.orderCount++;
+      } else {
+        result.push({ day: day, orderCount: 1 });
+      }
+    });
+
+    return result;
+  }
 
 }
