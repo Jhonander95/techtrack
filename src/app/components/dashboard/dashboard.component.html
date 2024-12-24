@@ -1,11 +1,49 @@
 <div style="width: 100%; height: 400px;">
-    <jqxChart
-      [width]="'100%'"
-      [height]="'100%'"
-      [source]="data"
-      [xAxis]="xAxis"
-      [valueAxis]="valueAxis"
-      [seriesGroups]="seriesGroups"
-    ></jqxChart>
-  </div>
+  <jqxChart
+    [width]="'100%'"
+    [height]="'100%'"
+    [source]="data"
+    [xAxis]="xAxis"
+    [valueAxis]="valueAxis"
+    [seriesGroups]="seriesGroups"
+    (onSeriesClick)="onChartClick($event)"
+    (click)="onClick()"
+    >
+    
+  </jqxChart>
+</div>
+  
+  <!-- Tabla de órdenes con PrimeNG -->
+<div *ngIf="showTable">
+  <h3>Órdenes de la Semana</h3>
+  <button pButton label="Cerrar" icon="pi pi-times" (click)="showTable = false" class="p-button-danger m-3"></button>
+  <p-table 
+    [value]="ordersByWeek" 
+    [paginator]="true" 
+    [rows]="10" 
+    [responsiveLayout]="'scroll'" 
+    [resizableColumns]="true" 
+    class="p-datatable-gridlines"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pResizableColumn>Orden #</th>
+        <th pResizableColumn>Impresora</th>
+        <th pResizableColumn>Diagnóstico</th>
+        <th pResizableColumn>Detalle de entrada</th>
+        <th pResizableColumn>Fecha</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr>
+        <td>{{ order['Orden #'] }}</td>
+        <td>{{ order.Impresora }}</td>
+        <td>{{ order.Diagnostico }}</td>
+        <td>{{ order['Detalle de entrada'] }}</td>
+        <td>{{ order.createdAt.toDate().toLocaleDateString('es-ES') }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
   
